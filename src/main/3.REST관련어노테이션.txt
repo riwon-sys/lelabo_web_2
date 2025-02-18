@@ -1,0 +1,44 @@
+[REST]
+1. 웹의 자원을 관리하는 아키텍처(설계 구조)
+2. 자원(Resources) , 행동(Methods) , 표현 개념
+3. HTTP 프로토콜을 이용하여 클라이언트인 유저와 서버인 톰켓 간의 통신을 일관성 있게 구성
+
+[REST API]
+1. REST 아키텍처에 따른 API
+2. REST 기반의 웹서비스 인터페이스 구축
+3. HTTP 요청을 통해 자원을 C R U D 할 수 있도록 제공
+
+[RESTful API]
+1. REST API의 아키텍처를 잘 사용하는지에 대한 개념
+2. 조건
+   1. 일관성 있는 URL : /board , /member
+   2. 적절한 http 메소드 사용 : get , post , put , delete
+   3. 무상태성 유지 (vs 웹 소켓)
+   4. 응답 데이터는 JSON /XML 제공한다.
+
+
+
+
+[REST 관련 주요 어노테이션 ] : SPRING Framework
+1. @Controller : HTTP의 요청|응답 처리 (주로 HTML 반환)
+2. @RestController : HTTP의 요청|응답 처리 (+@REQUESTBODY, 주로 JSON 반환)
+3. @RequestMapping : HTTP의 요청 URL 매핑 (주로 공통 URL정의 할때 클래스 위에 사용)
+4. @PostMapping : HTTP의 POST 요청 매핑 (Create , 생성 , insert)
+5. @GetMapping : HTTP의 GET 요청 매핑 (READ , 조회 , select)
+6. @PutMapping : HTTP의 PUT 요청 매핑 (UPDATE , 수정 , update)
+7. @DeleteMapping : HTTP의 DELETE 요청 매핑 (DELETE , 삭제 , delete)
+
+8. @ResponseBody : HTTP의 응답을 JSON으로 자동 변환하여 응답 , RestController에 포함되므로 생략 가능
+9. @RequestParam : HTTP의 요청의 QUERYSTRING , FORM-DATA에서 기본타입+기본공식타입의 자바 값으로 매핑
+
+10. @RequestBody : HTTP의 요청의 BODY(본문) 'application/json'에서 자바 객체타입의 자바 값으로 매핑
+
+11. @ModelAttribute : HTTP요청 매핑의 기본 어노테이션 생략가능, QUERYSTRING 에서 사용된다.
+
+[*] 관례적인 비교
+
+@Controller vs @RestController
+
+@RequestMapping vs XXXMapping
+
+@RequestParam vs @ RequestBody
