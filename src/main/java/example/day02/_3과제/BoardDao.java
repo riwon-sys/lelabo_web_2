@@ -1,43 +1,60 @@
 package example.day02._3과제;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-@Service // 스프링 컨테이너가 관리하는 서비스 클래스
-public class BoardService {
+@Component
+public class BoardDao {
 
-    private final BoardDao boardDao; // DAO 의존성 선언
+    // (2) 현재 과제에서는 DB가 없으므로 리스트가 DB 역할 한다.
+    private final List<BoardDto> boardTable = new ArrayList<>();
+    private int auto_increment = 1; // bno 자동번호 역할
 
-    // 생성자 주입 (권장 방식)
-    @Autowired
-    public BoardService(BoardDao boardDao) {
-        this.boardDao = boardDao;
-    }
+    // (3) POST 매핑으로 '/day02/task1/board' 주소의 body값을 dto로 매핑하여 함수 매개변수로 받는다,
 
-    // 1️⃣ 글 작성
-    public boolean writePost(BoardDto boardDto) {
-        return boardDao.save(boardDto);
-    }
+    public boolean method1(  BoardDto boardDto ){ // 2.body 값을 함수 매개변수로 매핑한다.
+        boardDto.setBno( auto_increment ); // 3. boardDto의 bno를 넣어준다.
+        boardTable.add( boardDto ); // 4. 리스트에 boardDto를 넣어준다.
+        auto_increment++; // 5. auto_increment 증가한다.
+        return true; // 6. 리턴한다.
+    } // f end
 
-    // 2️⃣ 전체 글 조회
-    public List<BoardDto> getAllPosts() {
-        return boardDao.findAll();
-    }
+    // (4) GET 매핑
+    public List<BoardDto> method2(){
+        return boardTable;
+    } // F END
 
-    // 3️⃣ 개별 글 조회
-    public Optional<BoardDto> getPostById(int bno) {
-        return boardDao.findById(bno);
-    }
+    // (5) GET 매핑
+    public BoardDto method3( int bno ){
+        for( int index = 0 ; index <= boardTable.size()-1 ; index++ ){
+            BoardDto boardDto = boardTable.get(index);
+            if( boardDto.getBno() == bno ){ return boardDto; } // 찾았으면 찾은 DTO 반환
+        }
+        return null; // 없으면
+    } // F END
 
-    // 4️⃣ 글 수정
-    public boolean updatePost(BoardDto boardDto) {
-        return boardDao.update(boardDto);
-    }
+    public boolean method4(  BoardDto boardDto ){
+        for( int index = 0 ; index <= boardTable.size()-1 ; index++ ){
+            BoardDto boardDto2 = boardTable.get( index );
+            if( boardDto2.getBno() == boardDto.getBno() ){
+                boardTable.set( index , boardDto );
+                return true;
+            }
+        }
+        return false;
+    } // f end
 
-    // 5️⃣ 글 삭제
-    public boolean deletePost(int bno) {
-        return boardDao.delete(bno);
-    }
+    public boolean mehtod5( int bno ){
+        for( int index = 0 ; index <= boardTable.size()-1 ; index++  ){
+            BoardDto boardDto2 = boardTable.get(index);
+            if( boardDto2.getBno() == bno ){
+                boardTable.remove( index );
+                return true;
+            }
+        }
+        return false;
+    } // f end
+
 }
