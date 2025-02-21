@@ -29,6 +29,10 @@ dependencies { // 라이브러리를 넣는 구간 의존성
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
+
+    runtimeOnly 'com.mysql:mysql-connector-j'
 }
 
 tasks.named('test') {
