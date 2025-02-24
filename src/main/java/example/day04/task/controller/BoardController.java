@@ -1,6 +1,7 @@
 package example.day04.task.controller;
 
 
+import example.day04.task.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping( "/day04/task/board")
 public class BoardController {
            // 스프링 컨테이너에 빈 (인스턴스) 주입
+           @Autowired
+           private BoardService boardService;
 
 
            // [1]   1. 글쓰기           POST       "/day04/task/board"
