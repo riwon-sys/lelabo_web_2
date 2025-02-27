@@ -1,6 +1,6 @@
 package example.day06.aop;
 
-// ======================= AOP 없이 구현된 코드 ================== //
+// ======================= AOP 없이 구현된 코드 시작 ================== //
 class TestService{
     //메소드1
     public void enter1(){
@@ -13,6 +13,8 @@ class TestService{
         System.out.println("학원 입장");                       // (2) 비지니스 로직
     }
 } // class end
+
+// ======================= AOP 없이 구현된 코드 끝 ================== //
 public class Example1 {
     public static void main(String[] args) {
         TestService testService = new TestService();
