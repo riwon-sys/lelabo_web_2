@@ -1,0 +1,7 @@
+.taskbox{
+  display: flex;
+  margin : 5px 5px;
+  width : 500px;
+  border : solid 5px #d9d9d9;
+  border-radius : 4px;
+}
