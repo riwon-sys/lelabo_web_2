@@ -12,7 +12,7 @@ import java.util.List;
 public class TaskController2 {
 
     @Autowired
-    private TaskService2 taskService2;
+    private TaskService2 taskService2; // 서비스클래스까지 다 작성하고 오토와이드 프리바이트 서비스 불러오기 불러오기
     // [1] 등록
     @PostMapping("")
     public int phonePost(@RequestBody TaskDto2 taskDto2){ // 리퀘스트 바디는 포스트하고 풋만 사용
@@ -42,4 +42,6 @@ public class TaskController2 {
 
 
     }
+
+    // [3]
 }
